@@ -27,7 +27,7 @@ class Markdown extends ControllerAbstract {
 	 *
 	 * @var string
 	 */
-	public $editormd_varsion = '1.5.0.14';
+	public $editormd_varsion = '1.5.0.12';
 
 	/**
 	 * The Post Type support from Markdown controller.
@@ -47,7 +47,6 @@ class Markdown extends ControllerAbstract {
 	const MD_POST_META_SEQUENCE  = '_is_githuber_sequence';
 	const MD_POST_META_FLOW      = '_is_githuber_flow_chart';
 	const MD_POST_META_KATEX     = '_is_githuber_katex';
-	const MD_POST_META_MATHJAX   = '_is_githuber_mathjax';
 	const MD_POST_META_MERMAID   = '_is_githuber_mermaid';
 
 	const JETPACK_MD_POST_META   = '_wpcom_is_markdown';
@@ -89,7 +88,6 @@ class Markdown extends ControllerAbstract {
 	public $is_support_sequence  = false;
 	public $is_support_mermaid   = false;
 	public $is_support_toc       = false;
-	public $is_support_mathjax   = false;
 
 	public $markdown_this_post = true;
 
@@ -129,10 +127,6 @@ class Markdown extends ControllerAbstract {
 
 		if ( 'yes' === githuber_get_option( 'support_mermaid', 'githuber_modules' ) ) {
 			$this->is_support_mermaid = true;
-		}
-
-		if ( 'yes' === githuber_get_option( 'support_mathjax', 'githuber_modules' ) ) {
-			$this->is_support_mathjax = true;
 		}
 
 		// Load TOC widget. //
@@ -184,14 +178,6 @@ class Markdown extends ControllerAbstract {
 		// Get post type from curren screen.
 		$current_post_type = githuber_get_current_post_type();
 
-        $args = array(
-            'public'       => true,
-            '_builtin'     => false, // for custom post types
-            'show_in_rest' => true, // for custom post types with Gutenberg editor enabled
-        );
-
-        $custom_post_types = get_post_types( $args );
-
 		// Feature request #98
 		if ( 'yes' === githuber_get_option( 'richeditor_by_default', 'githuber_preferences' ) ) {
 
@@ -199,7 +185,7 @@ class Markdown extends ControllerAbstract {
 				$rich_editing = new RichEditing();
 				$rich_editing->enable();
 
-				if ( empty( $current_post_type ) || 'post' === $current_post_type || 'page' === $current_post_type || in_array( $current_post_type, $custom_post_types ) ) {
+				if ( empty( $current_post_type ) || 'post' === $current_post_type || 'page' === $current_post_type ) {
 					$rich_editing->enable_gutenberg();
 				}
 
@@ -214,8 +200,8 @@ class Markdown extends ControllerAbstract {
 			$rich_editing->enable();
 
 			// Custom post types are not supporting Gutenberg by default for now, so
-            // We only enable Gutenberg for `post`, `page` and custom post types with Gutenberg enabled
-			if ( 'post' === $current_post_type || 'page' === $current_post_type || in_array( $current_post_type, $custom_post_types ) ) {
+			// We only enable Gutenberg for `post` and `page`...
+			if ( 'post' === $current_post_type || 'page' === $current_post_type || 'card' === $current_post_type || 'integration' === $current_post_type || 'channel' === $current_post_type || 'glossary_article' === $current_post_type ) {
 				$rich_editing->enable_gutenberg();
 			}
 		} else {
@@ -225,7 +211,7 @@ class Markdown extends ControllerAbstract {
 				$rich_editing = new RichEditing();
 				$rich_editing->enable();
 
-				if ( 'post' === $current_post_type || 'page' === $current_post_type || in_array( $current_post_type, $custom_post_types ) ) {
+				if ( 'post' === $current_post_type || 'page' === $current_post_type || 'card' === $current_post_type || 'integration' === $current_post_type || 'channel' === $current_post_type || 'glossary_article' === $current_post_type ) {
 					$rich_editing->enable_gutenberg();
 				}
 
@@ -238,7 +224,6 @@ class Markdown extends ControllerAbstract {
 
 				// Okay! User enable Markdown for current current post and it's post type.
 				$this->jetpack_code_snippets();
-				$this->maybe_unload_for_bulk_edit();
 
 				if ( 'yes' === githuber_get_option( 'html_to_markdown', 'githuber_markdown' ) ) {
 					$html2markdown = new Controller\HtmlToMarkdown();
@@ -280,11 +265,8 @@ class Markdown extends ControllerAbstract {
 
 			switch ( get_bloginfo( 'language' ) ) {
 				case 'zh-TW':
-					wp_enqueue_script( 'editor-md-lang', $this->githuber_plugin_url . 'assets/vendor/editor.md/languages/zh-tw.js', array(), $this->editormd_varsion, true );
-					break;
-
 				case 'zh-CN':
-					wp_enqueue_script( 'editor-md-lang', $this->githuber_plugin_url . 'assets/vendor/editor.md/languages/zh-cn.js', array(), $this->editormd_varsion, true );
+					wp_enqueue_script( 'editor-md-lang', $this->githuber_plugin_url . 'assets/vendor/editor.md/languages/zh-tw.js', array(), $this->editormd_varsion, true );
 					break;
 
 				case 'en-US':
@@ -306,12 +288,12 @@ class Markdown extends ControllerAbstract {
 			);
 
 			$editormd_config_list['modules'] = array(
-				'support_emojify',
+				//'support_toc',
+				//'support_emoji',
 				'support_katex',
 				'support_flowchart',
 				'support_sequence_diagram',
 				'support_mermaid',
-				'support_mathjax',
 			);
 
 			$editormd_config_list['extensions'] = array(
@@ -329,7 +311,6 @@ class Markdown extends ControllerAbstract {
 			}
 
 			$editormd_localize['editor_modules_url']   = $this->githuber_plugin_url . 'assets/vendor/editor.md/lib/';
-			$editormd_localize['plugin_vendor_url']    = $this->githuber_plugin_url . 'assets/vendor/';
 			$editormd_localize['editor_placeholder']   = __( 'Happy Markdowning!', 'wp-githuber-md' );
 			$editormd_localize['image_paste_callback'] = admin_url( 'admin-ajax.php?action=githuber_image_paste&post_id=' . $post_id . '&_wpnonce=' . wp_create_nonce( 'image_paste_action_' . $post_id ) );
 			$editormd_localize['prism_line_number']    = githuber_get_option( 'prism_line_number', 'githuber_modules' );
@@ -437,7 +418,6 @@ class Markdown extends ControllerAbstract {
 		$is_flowchart = false;
 		$is_mermaid   = false;
 		$is_katex     = false;
-		$is_mathjax   = false;
 
 		if ( preg_match_all( '/<code class="language-([a-z\-0-9]+)"/', $post_content, $matches ) > 0 && ! empty( $matches[1] ) ) {
 
@@ -477,21 +457,12 @@ class Markdown extends ControllerAbstract {
 				if ( 'katex' === $match ) {
 					$is_katex = true;
 				}
-
-				if ( 'mathjax' === $match ) {
-					$is_mathjax = true;
-				}
 			}
 		} 
 		
 		// If we find inline KaTex syntax.
 		if ( strpos( $post_content, '<code class="katex-inline">' ) !== false ) {
 			$is_katex = true;
-		}
-
-		// If we find inline MathJax syntax.
-		if ( strpos( $post_content, '<code class="mathjax-inline language-mathjax">' ) !== false ) {
-			$is_mathjax = true;
 		}
 
 		// Combine array into a string.
@@ -533,12 +504,6 @@ class Markdown extends ControllerAbstract {
 			update_metadata( 'post', $post_id, self::MD_POST_META_KATEX, true );
 		} else {
 			update_metadata( 'post', $post_id, self::MD_POST_META_KATEX, false );
-		}
-
-		if ( $this->is_support_mathjax && $is_mathjax ) {
-			update_metadata( 'post', $post_id, self::MD_POST_META_MATHJAX, true );
-		} else {
-			update_metadata( 'post', $post_id, self::MD_POST_META_MATHJAX, false );
 		}
 	}
 
@@ -642,7 +607,7 @@ class Markdown extends ControllerAbstract {
 	 */
 	public function maybe_unload_for_bulk_edit() {
 		if ( isset( $_REQUEST['bulk_edit'] ) && $this->is_md_enabled( 'posting' ) ) {
-			$this->unload_markdown( 'posting' );
+			$this->unload_markdown_for_posts();
 		}
 	}
 
@@ -688,7 +653,6 @@ class Markdown extends ControllerAbstract {
 				add_filter( '_wp_post_revision_fields', array( $this, '_wp_post_revision_fields' ) );
 				add_action( 'xmlrpc_call', array( $this, 'xmlrpc_actions' ) );
 				add_filter( 'content_save_pre', array( $this, 'preserve_code_blocks' ), 1 );
-
 				if ( defined( 'XMLRPC_REQUEST' ) && XMLRPC_REQUEST ) {
 					$this->check_for_early_methods();
 				}
@@ -821,6 +785,7 @@ class Markdown extends ControllerAbstract {
 			// we have no context to determine supported post types in the `post_content_pre` hook,
 			// which already ran to sanitize code blocks. Undo that.
 			$post_data['post_content'] = $this->restore_code_blocks( $post_data['post_content'] );
+
 			return $post_data;
 		}
 
@@ -870,8 +835,6 @@ class Markdown extends ControllerAbstract {
 	
 		// Is it support Prism - syntax highlighter.
 		$this->detect_code_languages( $post_id, wp_unslash( $post_data['post_content'] ) );
-
-		$post_data['post_content'] = $this->fix_issue_209( $post_data['post_content'] );
 
 		return $post_data;
 	}
@@ -971,11 +934,6 @@ class Markdown extends ControllerAbstract {
 		// Render KaTeX inline markup.
 		if ( $this->is_support_katex ) {
 			$text = Module\KaTeX::katex_inline_markup( $text );
-		}
-
-		// Render MathJax inline markup.
-		if ( $this->is_support_mathjax ) {
-			$text = Module\MathJax::mathjax_inline_markup( $text );
 		}
 
 		// Markdown inserts extra spaces to make itself work. Buh-bye.
@@ -1178,20 +1136,7 @@ class Markdown extends ControllerAbstract {
 	 * @return string       post content with code blocks unescaped
 	 */
 	public function restore_code_blocks( $text ) {
-		$text = $this->get_parser()->codeblock_restore( $text );
-		return $this->fix_issue_209( $text );
-	}
-
-	/**
-	 * https://github.com/terrylinooo/githuber-md/issues/209
-	 *
-	 * @param  string $text post content
-	 * @return string       post content with code blocks unescaped
-	 */
-	public function fix_issue_209( $text ) {
-		// Use a unique string `_!_!_` to replace `&#`, then covert it to `&amp;#`
-		$text = str_replace( '_!_!_', '&amp;#', $text );
-		return $text;
+		return $this->get_parser()->codeblock_restore( $text );
 	}
 
 	/**
@@ -1237,4 +1182,5 @@ class Markdown extends ControllerAbstract {
 		}
 		return false;
 	}
+
 }

@@ -138,7 +138,5 @@ function githuber_load_utility( $filename ) {
  * @return void
  */
 function githuber_logger( $message, $data = array() ) {
-	if ( GITHUBER_DEBUG_MODE ) {
-		\Githuber\Controller\Monolog::logger( $message, $data );
-	}
+	\Githuber\Controller\Monolog::logger( $message, $data );
 }

@@ -31,9 +31,8 @@ var spellcheck_lang = 'en_US';
             previewTheme: 'default',
             editorTheme: config.editor_editor_theme, 
             tocContainer: (config.support_toc === 'yes') ? '' : false,
-            emoji: (config.support_emojify === 'yes'),
+            emoji: (config.support_emoji === 'yes'),
             tex: (config.support_katex === 'yes'),
-            mathJax: (config.support_mathjax === 'yes'),
             flowChart: (config.support_flowchart === 'yes'),
             sequenceDiagram: (config.support_sequence_diagram === 'yes'),
             taskList: (config.support_task_list === 'yes'),
@@ -54,7 +53,7 @@ var spellcheck_lang = 'en_US';
                     'h1', 'h2', 'h3', 'h4', '|',
                     'list-ul', 'list-ol', 'hr', '|',
                     'link', 'reference-link', 'image', 'code', 'code-block', 'table', 'datetime', 'html-entities', 'more', 'pagebreak', config.support_emoji === 'yes' ? 'emoji' : '' + '|',
-                    'watch', 'preview', 'fullscreen',  config.support_emojify === 'yes' ? "emoji" : "", 'help', 
+                    'watch', 'preview', 'fullscreen', 'help'
                 ];
             },
             onfullscreen: function () {

@@ -232,11 +232,8 @@ class MarkdownParser extends Parsedown {
 	public function do_codeblock_preserve( $matches ) {
 		$block = stripslashes( $matches[3] );
 
-		// Issue #209
-		$block = str_replace( '&#', '_!_!_', $block );
-
 		// check `
-		$block = str_replace( '`', '&#x60;', $block );
+		$block = str_replace('`', '&#x60;', $block);
 		$block = esc_html( $block );
 		$block = str_replace( '\\', '\\\\', $block );
 		$open  = $matches[1] . $matches[2] . "\n";
@@ -263,11 +260,7 @@ class MarkdownParser extends Parsedown {
 	 */
 	public function do_codeblock_restore( $matches ) {
 		$block = html_entity_decode( $matches[3], ENT_QUOTES );
-
-		// Issue #209
-		$block = str_replace( '_!_!_', '&#', $block );
-
-		$block = str_replace( '&#x60;', '`', $block );
+		$block = str_replace('&#x60;', '`', $block);
 		$open  = $matches[1] . $matches[2] . "\n";
 		$end   =  "\n" . $matches[4];
 
@@ -291,7 +284,7 @@ class MarkdownParser extends Parsedown {
 		$this->preserve_text_hash = array();
 
 		// Restore "`"
-		$text = str_replace( '&#x60;', '`', $text );
+		$text = str_replace('&#x60;', '`', $text);
 
 		return $text;
 	}

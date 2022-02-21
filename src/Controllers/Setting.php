@@ -22,7 +22,7 @@ class Setting extends ControllerAbstract {
 	 *
 	 * @var string
 	 */
-	public $menu_position = 'options';
+	public $menu_position = 'plugins';
 
 	/**
 	 * Menu slug.
@@ -326,17 +326,7 @@ class Setting extends ControllerAbstract {
 					'name'    => 'fetch_remote_image',
 					'class'   => 'fetch_remote_image',
 					'label'   => __( 'Fetch Remote Image', 'wp-githuber-md' ),
-					'desc'    => __( 'A remote image means that it is not a URL from your site. This option allows you to fetch remote images and save them into local folder.', 'wp-githuber-md' ),
-					'type'    => 'toggle',
-					'size'    => 'sm',
-					'default' => 'no',
-				),
-
-				array(
-					'name'    => 'keyword_suggestion_tool',
-					'class'   => 'keyword_suggestion_tool',
-					'label'   => __( 'Keyword Suggestion Tool', 'wp-githuber-md' ),
-					'desc'    => __( 'This keyword suggestion tool can give you a list of long-tail terms based on the keyword you enter. If you are good in On-page SEO skills, it will help you a lot in writing. Data source is from Google Suggestions.', 'wp-githuber-md' ),
+					'desc'    => __( 'A remote image means that it is not a URL from your site. This option allows you to fetch remote images and save them info local folder.', 'wp-githuber-md' ),
 					'type'    => 'toggle',
 					'size'    => 'sm',
 					'default' => 'no',
@@ -547,7 +537,7 @@ class Setting extends ControllerAbstract {
 					'default' => 'default',
 					'parent'  => 'support_prism',
 					'options' => array(
-						'default'    => __( 'default', 'wp-githuber-md' ),
+						'default'    => 'default',
 						'cloudflare' => 'cdnjs.cloudflare.com',
 						'jsdelivr'   => 'cdn.jsdelivr.net',
 					)
@@ -631,7 +621,7 @@ class Setting extends ControllerAbstract {
 						'foundation'                => 'Foundation',
 						'github-gist'               => 'Github Gist',
 						'github'                    => 'Github',
-						'gml'                       => 'Gml',
+						'gml'                          => 'Gml',
 						'googlecode'                => 'Google Code',
 						'grayscale'                 => 'Grayscale',
 						'gruvbox-dark'              => 'Gruvbox Dark',
@@ -649,6 +639,7 @@ class Setting extends ControllerAbstract {
 						'mono-blue'                 => 'Mono Blue',
 						'monokai-sublime'           => 'Monokai Sublime',
 						'monokai'                   => 'Monokai',
+					 // 'night-owl'                 => 'Night Owl',
 						'nord'                      => 'Nord',
 						'obsidian'                  => 'Obsidian',
 						'ocean'                     => 'Ocean',
@@ -687,7 +678,7 @@ class Setting extends ControllerAbstract {
 					'default' => 'default',
 					'parent'  => 'support_highlight',
 					'options' => array(
-						'default'    => __( 'default', 'wp-githuber-md' ),
+						'default'    => 'default',
 						'cloudflare' => 'cdnjs.cloudflare.com',
 					)
 				),
@@ -725,7 +716,7 @@ class Setting extends ControllerAbstract {
 					'default' => 'default',
 					'parent'  => 'support_clipboard',
 					'options' => array(
-						'default'    => __( 'default', 'wp-githuber-md' ),
+						'default'    => 'default',
 						'cloudflare' => 'cdnjs.cloudflare.com',
 						'jsdelivr'   => 'cdn.jsdelivr.net',
 					)
@@ -765,17 +756,6 @@ class Setting extends ControllerAbstract {
                     'name'              => 'imgur_client_id',
 					'label'             => __( 'Imgur Client ID', 'wp-githuber-md' ),
 					'desc'              => githuber_load_view( 'setting/image-paste-imgur' ),
-                    'placeholder'       => '',
-                    'type'              => 'text',
-					'default'           => '',
-					'parent'            => 'support_image_paste',
-                    'sanitize_callback' => 'sanitize_text_field',
-				),
-
-				array(
-                    'name'              => 'smms_api_key',
-					'label'             => __( 'sm.ms API Key', 'wp-githuber-md' ),
-					'desc'              => githuber_load_view( 'setting/image-paste-smms' ),
                     'placeholder'       => '',
                     'type'              => 'text',
 					'default'           => '',
@@ -878,10 +858,9 @@ class Setting extends ControllerAbstract {
 					'default' => 'default',
 					'parent'  => 'support_katex',
 					'options' => array(
-						'default'    => __( 'default', 'wp-githuber-md' ),
+						'default'    => 'default',
 						'cloudflare' => 'cdnjs.cloudflare.com',
 						'jsdelivr'   => 'cdn.jsdelivr.net',
-						'custom'     => __( 'custom', 'wp-githuber-md' )
 					)
 				),
 
@@ -917,7 +896,7 @@ class Setting extends ControllerAbstract {
 					'default' => 'default',
 					'parent'  => 'support_mermaid',
 					'options' => array(
-						'default'    => __( 'default', 'wp-githuber-md' ),
+						'default'    => 'default',
 						'cloudflare' => 'cdnjs.cloudflare.com',
 						'jsdelivr'   => 'cdn.jsdelivr.net',
 					)
@@ -955,7 +934,7 @@ class Setting extends ControllerAbstract {
 					'default' => 'default',
 					'parent'  => 'support_flowchart',
 					'options' => array(
-						'default'    => __( 'default', 'wp-githuber-md' ),
+						'default'    => 'default',
 						'cloudflare' => 'cdnjs.cloudflare.com',
 						'jsdelivr'   => 'cdn.jsdelivr.net',
 					)
@@ -993,7 +972,7 @@ class Setting extends ControllerAbstract {
 					'default' => 'default',
 					'parent'  => 'support_sequence_diagram',
 					'options' => array(
-						'default'    => __( 'default', 'wp-githuber-md' ),
+						'default'    => 'default',
 						'cloudflare' => 'cdnjs.cloudflare.com',
 						'jsdelivr'   => 'cdn.jsdelivr.net',
 					)
@@ -1004,91 +983,6 @@ class Setting extends ControllerAbstract {
 					'desc'    => githuber_load_view( 'example/sequence' ),
 					'type'    => 'html',
 					'parent'  => 'support_sequence_diagram',
-				),
-
-				array(
-					'section_title' => true,
-					'location_id'   => 'mathjax',
-					'label'         => __( 'MathJax', 'wp-githuber-md' ),
-					'desc'          => __( 'MathJax.js', 'wp-githuber-md' ),
-				),
-			
-				array(
-					'name'        => 'support_mathjax',
-					'desc'        => __( 'MathJax displays mathematical notation in web browsers, using LaTeX markup. ', 'wp-githuber-md' ),
-					'type'        => 'toggle',
-					'has_child'   => true,
-					'location_id' => 'mathjax',
-					'default'     => 'no',
-				),
-	
-				array(
-					'name'    => 'mathjax_src',
-					'label'   => __( 'File Host', 'wp-githuber-md' ),
-					'desc'    => __( 'Use this library with a CDN service or self-hosted (default)?', 'wp-githuber-md' ),
-					'type'    => 'radio',
-					'default' => 'cloudflare',
-					'parent'  => 'support_mathjax',
-					'options' => array(
-						'default'    => __( 'default', 'wp-githuber-md' ),
-						'cloudflare' => 'cdnjs.cloudflare.com',
-						'jsdelivr'   => 'cdn.jsdelivr.net',
-					)
-				),
-	
-				array(
-					'label'   => __( 'Example', 'wp-githuber-md' ),
-					'desc'    => githuber_load_view( 'example/mathjax' ),
-					'type'    => 'html',
-					'parent'  => 'support_mathjax',
-				),
-
-				array(
-					'section_title' => true,
-					'location_id'   => 'support-emojify',
-					'label'         => __( 'Emojify', 'wp-githuber-md' ),
-					'desc'          => __( 'emojify.js', 'wp-githuber-md' ),
-				),
-
-				array(
-					'name'        => 'support_emojify',
-					'desc'        => __( 'Display emojis on Markdown editor preview pane and frontend posts.', 'wp-githuber-md' ),
-					'type'        => 'toggle',
-					'has_child'   => true,
-					'location_id' => 'support-emoji',
-					'default'     => 'no',
-				),
-
-				array(
-					'name'    => 'emojify_src',
-					'label'   => __( 'File Host', 'wp-githuber-md' ),
-					'desc'    => __( 'Use this library with a CDN service or self-hosted (default)?', 'wp-githuber-md' ),
-					'type'    => 'radio',
-					'default' => 'default',
-					'parent'  => 'support_emojify',
-					'options' => array(
-						'default'    => __( 'default', 'wp-githuber-md' ),
-						'cloudflare' => 'cdnjs.cloudflare.com',
-						'jsdelivr'   => 'cdn.jsdelivr.net',
-					)
-				),
-
-				array(
-					'name'    => 'emojify_emoji_size',
-					'label'   => __( 'Image Size', 'wp-githuber-md' ),
-					'desc'    => __( 'What size would you want the emojis to be in your posts.', 'wp-githuber-md' ),
-					'type'    => 'radio',
-					'default' => '1.5em',
-					'parent'  => 'support_emojify',
-					'options' => array(
-						'1em' => '1.00 (em)',
-						'1.125em' => '1.125 (em)',
-						'1.25em' => '1.250 (em)',
-						'1.375em' => '1.375 (em)',
-						'1.5em' => '1.500 (em)' . ' - ' . __( 'default', 'wp-githuber-md' ),
-						'1.625em' => '1.625 (em)',
-						'1.75em' => '1.750 (em)',
-					)
 				),
 			),
 
@@ -1133,7 +1027,7 @@ class Setting extends ControllerAbstract {
 				array(
 					'name'    => 'support_inline_code_keyboard_style',
 					'label'   => __( 'Inline Code Block with Keyboard Style', 'wp-githuber-md' ),
-					'desc'    => githuber_load_view( 'example/inline-code-keyboard-style' ),
+					'desc'    => githuber_load_view( 'example/inline_code_keyboard_style' ),
 					'type'    => 'toggle',
 					'size'    => 'sm',
 					'default' => 'no'
@@ -1269,24 +1163,11 @@ class Setting extends ControllerAbstract {
 	*/
 	public function setting_plugin_page() {
 
-		$git_url_plugin = 'https://github.com/terrylinooo/githuber-md';
-
-		echo '<div class="githuber-md-info-bar">';
-		echo '	<div class="logo-info"><img src="' . GITHUBER_PLUGIN_URL . '/assets/images/logo.png" class="githuber-md-logo"></div>';
-		echo '	<div class="version-info">';
-		echo '    <a href="' . $git_url_plugin . '/issues" target="_blank">' . __( 'Report an issue', 'wp-githuber-md' ) . '</a>  ';
-		echo '    ' . __( 'Version', 'wp-githuber-md' ) . ': <a href="' . $git_url_plugin . '" target="_blank">' . GITHUBER_PLUGIN_VERSION . '</a>  ';
-		echo '  </div>';
-		echo '</div>';
 		echo '<div class="wrap">';
-
 		settings_errors();
 
 		self::$setting_api->show_navigation();
 		self::$setting_api->show_forms();
-
-		echo '<div>' . __( 'Maintain social distancing. Wash your hands frequently.', 'wp-githuber-md' ) . '</div>';
-		echo '<div>' . __( 'Stay at home. Write your articles with Githuber MD.', 'wp-githuber-md' ) . '</div>';
 
 		echo '</div>';
 	}
@@ -1304,7 +1185,7 @@ class Setting extends ControllerAbstract {
 		}
 
 		if ( $file == $this->githuber_plugin_name ) {
-			$links[] = '<a href="' . admin_url( "options-general.php?page=" . $this->menu_slug ) . '">' . __( 'Settings', 'wp-githuber-md' ) . '</a>';
+			$links[] = '<a href="' . admin_url( "plugins.php?page=" . $this->menu_slug ) . '">' . __( 'Settings', 'wp-githuber-md' ) . '</a>';
 			return $links;
 		}
 	}

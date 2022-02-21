@@ -139,14 +139,14 @@
 				});
 			}
 			
-			var category = ["Github emoji"];
+			var category = ["Github emoji", "Twemoji", "Font awesome", "Editor.md logo"];
 			var tab      = dialog.find("." + classPrefix + "tab");
 
 			if (tab.html() === "") 
 			{
-				var head = "<ul class=\"" + classPrefix + "tab-head\" style=\"display: none;\">";
+				var head = "<ul class=\"" + classPrefix + "tab-head\">";
 
-				for (var i = 0; i<1; i++) {
+				for (var i = 0; i<4; i++) {
 					var active = (i === 0) ? " class=\"active\"" : "";
 					head += "<li" + active + "><a href=\"javascript:;\">" + category[i] + "</a></li>";
 				}
@@ -169,7 +169,7 @@
 			}
             
 			var tabBoxs = tab.find("." + classPrefix + "tab-box");
-            var emojiCategories = ["github-emoji"];
+            var emojiCategories = ["github-emoji", "twemoji", "font-awesome", logoPrefix];
 
 			var drawTable = function() {
                 var cname = emojiCategories[emojiTabIndex];

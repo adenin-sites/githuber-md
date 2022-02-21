@@ -8,7 +8,7 @@
  *
  * @package Githuber
  * @since 1.0.0
- * @version 1.14.0
+ * @version 1.5.2
  */
 
 namespace Githuber\Module;
@@ -20,7 +20,7 @@ class KaTeX extends ModuleAbstract {
 	 *
 	 * @var string
 	 */
-	public $katex_version = '0.12.0';
+	public $katex_version = '0.10.0';
 
 	/**
 	 * The priority order to load CSS file, the value should be higher than theme's.
@@ -164,7 +164,7 @@ class KaTeX extends ModuleAbstract {
 	public static function katex_inline_markup( $content ) {
 
 		$regex = '%<code>\$\$((?:[^$]+ |(?<=(?<!\\\\)\\\\)\$ )+)(?<!\\\\)\$\$<\/code>%ix';
-		$result = preg_replace_callback( $regex, function() {
+		$content = preg_replace_callback( $regex, function() {
 			$matches = func_get_arg(0);
 
 			if ( ! empty( $matches[1] ) ) {
@@ -173,10 +173,6 @@ class KaTeX extends ModuleAbstract {
 				return '<code class="katex-inline">' . trim( $katex ) . '</code>';
 			}
 		}, $content );
-
-		if ( ! empty( $result ) ) {
-			return $result;
-		}
 
 		return $content;
 	}

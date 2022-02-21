@@ -2,7 +2,9 @@
 
 ![Screenshot](./assets/images/wp-githuber-md-cover.png)
 
-An all-in-on [WordPress Markdown Plugin](https://terryl.in/en/repository/wordpress-markdown-plugin-githuber-md/) provides a variety of features such as Markdown editor, live-preview, image-paste, HTML-to-Markdown helper, and more..
+An all-in-on [WordPress Markdown Plugin](https://terryl.in/en/repository/wordpress-markdown-plugin-githuber-md/) provides a variety of features such as Markdown editor, live-preivew, image-paste, HTML-to-Markdown helper, and more..
+
+[![RIPS CodeRisk](https://coderisk.com/wp/plugin/wp-githuber-md/badge "RIPS CodeRisk")](https://coderisk.com/wp/plugin/wp-githuber-md)
 
 ## How it works
 
@@ -39,7 +41,7 @@ https://youtu.be/it1noNCTXa4
 
 * PHP version > 5.3.0
 * WordPress version > 4.0
-* Tested up to 5.5.1
+* Tested up to 5.1.1
 
 ## Download
 
@@ -72,18 +74,15 @@ If you're planning to use this plugin in an existing blog, be sure to:
 * Enable / disable Markdown for single post.
 * Support Gutenberg editor.
 * Support custom post types.
-* HTML-to-Markdown helper
-* Image copy & paste (support uploading to Imgur.com and sm.ms)
-* Syntax highlight.
-* Flow chart.
-* KaTex.
-* Sequence diagram.
-* Mermaid.
-* MathJax.
-* Emoji.
+* [HTML-to-Markdown helper](https://terryl.in/en/githuber-md-html2markdown/).
+* [Image copy & paste](https://terryl.in/en/githuber-md-image-paste/). (support uploading to Imgur and sm.ms)
+* Syntax highlight. (prism.js)
+* [Flow chart](https://terryl.in/en/githuber-md-flow-chart/).
+* [KaTex](https://terryl.in/en/githuber-md-katex/).
+* [Sequence diagram](https://terryl.in/en/githuber-md-sequence-diagrams/). (Known issue #1)
+* [Mermaid](https://terryl.in/en/githuber-md-mermaid/).
 * Github flavored Markdown task list.
 * Markdown extra...
-* Keyword suggestion tool.
 
 ## Sceenshots
 

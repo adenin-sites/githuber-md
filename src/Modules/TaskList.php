@@ -16,6 +16,13 @@ namespace Githuber\Module;
 class TaskList {
 
 	/**
+	 * Constructer.
+	 */
+	public function __construct() {
+		parent::__construct();
+	}
+
+	/**
 	 * Support Github Flavored Markdown task lists.
 	 * 
 	 * @param string $text HTML content.

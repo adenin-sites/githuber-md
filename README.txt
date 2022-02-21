@@ -1,16 +1,17 @@
 === WP Githuber MD - WordPress Markdown Editor ===
 Contributors: terrylin
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donate%40terryl.in&item_name=WordPress+Plugin+-+WP+Githuber+MD&currency_code=USD&source=url
 Tags: markdown, markdown editor, katex, mermaid, flow chart, github
 Requires at least: 4.0
-Tested up to: 5.8.1
-Stable tag: 1.16.1
+Tested up to: 5.3.0
+Stable tag: 1.12.0
 Requires PHP: 5.3.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl.html
 
 == Description ==
 
-An all-in-on WordPress Markdown Plugin provides a variety of features such as Markdown editor, live-preview, image-paste, HTML-to-Markdown helper, and more..
+An all-in-on WordPress Markdown Plugin provides a variety of features such as Markdown editor, live-preivew, image-paste, HTML-to-Markdown helper, and more..
 
 Read detailed document, please visit [https://github.com/terrylinooo/githuber-md](https://github.com/terrylinooo/githuber-md).
 
@@ -22,7 +23,7 @@ The Video shows you the following steps:
 
 1. Convert HTML to Markdown by using `HTML to Markdown` tool.
 2. Cut up a selection area of an image and copy it from Photoshop, then paste it to Markdown Editor.
-3. Click "Update" button to save Markdown to `post_content_filtered` and save HTML to `post_content` (it is what you will see in result).
+3. Click "Update" button to save Markdown to `post_content_filtered` and save HTML to `post_content` (it is what you will see in result). 
 4. View the result.
 
 == How it works ==
@@ -31,7 +32,7 @@ The Video shows you the following steps:
 2. Parse the Markdown to HTML, save the parsed HTML content into `wp_posts`.`post_content`.
 
 This plugin will detect your Markdown content and decide what scripts will be loaded, to avoid loading unnecessary scripts.
-For example, if you enabled Syntax highlight, you have to update your post again to take effects.
+For example, if you enabled `Syntax highlight`, you have to update your post again to take effects.
 
 == Suggestions ==
 
@@ -40,7 +41,7 @@ The better situation to use this plugin is you just started a new blog.
 If you're planning to use this plugin in an existing blog, be sure to:
 
 - Turn off other Markdown plugins, because the similar plugins might do the same things when submitting your posts, may have some syntax conversion issues between Markdown and HTML.
-- My suggestion is to turn off revision and auto-save, there are options in setting page.
+- My personal suggestion is to turn off `revision` and `auto-save`, there are options in setting page.
 
 == Installation ==
 
@@ -56,20 +57,16 @@ If you're planning to use this plugin in an existing blog, be sure to:
 * Enable / disable Markdown for single post.
 * Support Gutenberg editor.
 * Support custom post types.
-* Support Markdown extra syntax.
-* HTML-to-Markdown tool.
-* Image copy & paste (support uploading to Imgur.com and sm.ms)
-* Highlight code syntax. (prism.js or hightlight.js)
-* Flow chart.
-* KaTex.
-* Sequence diagram.
-* Mermaid.
-* MathJax.
-* Emoji.
+* Syntax highlighting.
+* [HTML-to-Markdown helper](https://terryl.in/en/githuber-md-html2markdown/).
+* [Image copy & paste](https://terryl.in/en/githuber-md-image-paste/). (support uploading to Imgur)
+* [Flow chart](https://terryl.in/en/githuber-md-flow-chart/).
+* [KaTex](https://terryl.in/en/githuber-md-katax/).
+* [Sequence diagram](https://terryl.in/en/githuber-md-sequence-diagrams/). (#1)
+* [Mermaid](https://terryl.in/en/githuber-md-mermaid/).
 * Github flavored Markdown task list.
-* Fetch remote images.
-* Keyword suggestion tool.
-* and more...
+* Githuber MD extended Markdown.
+* Markdown extra...
 
 == Frequently Asked Questions ==
 
@@ -77,14 +74,14 @@ You'll find answers to many of your questions on [Report issues](https://github.
 
 == Translations ==
 
-Traditional Chinese (zh_TW) by [Alex Lion](https://www.alexclassroom.com/).
-Simplified Chinese (zh_CN) by [Terry Lin](https://terryl.in/zh/).
+Traditional Chinese (zh_TW) by [Alex Lion](https://www.alexclassroom.com/)
+Simplified Chinese (zh_CN)
 
 == Screenshots ==
 
 1. HTML-to-Markdown tool.
 2. Image copy and paste.
-3. Update post and see result.
+3. Update post and see result. 
 4. Syntax Highlighing
 5. Mermaid.
 6. KaTex.
@@ -97,7 +94,7 @@ Simplified Chinese (zh_CN) by [Terry Lin](https://terryl.in/zh/).
 
 == Copyright ==
 
-WP Githuber MD, Copyright 2018-2020 TerryL.in
+WP Githuber MD, Copyright 2018 TerryL.in
 WP Githuber MD is distributed under the terms of the GNU GPL
 
 This program is free software: you can redistribute it and/or modify
@@ -296,7 +293,7 @@ GNU General Public License for more details.
 
 = 1.11.5
 
-- Jetpack compatibility #80, #81, thanks @jeherve
+- Jetpack compatibility #80, #81, thanks @jeherve 
 - Fix issue #92
 - Remove donation information.
 
@@ -327,63 +324,6 @@ GNU General Public License for more details.
 - New feature - Syntax highlighter by highlight.js
 - Hide `support comment` option because it doesn't work now.
 - Update uninstall.php
-
-= 1.12.1
-
-- Move settings to the option submenu.
-
-= 1.12.2
-
-- Fix issue #144 - Deregistering `autosave` script gives error. (Fixed by alpipego. Thanks for contributing.)
-- Fix issue #143 - Unable to upload images to sm.ms. (The v1 API is deprecated.)
-- Fix issue #147 - Update CodeMirror themes.
-
-= 1.13.0
-
-- New feature - MathJax.
-
-= 1.13.1
-
-- Bug fix - Missing property in Markdown class.
-
-= 1.14.0
-
-- Feature request #86, #135 - Emojify module.
-- Fix issue #163 - Update KaTex version.
-- Fix issue #127, #149 - Link opening method.
-- Fix issue #156 - Highlight C code block.
-- Fix issue #120 - FlowChart identification code - flow, which occurs a conflict to Prism.
-- Fix issue #103 - Markdown editor UI - add support to zh_CN
-
-= 1.15.0
-
-- New feature - Keyword suggestion tool.
-
-= 1.15.1
-
-- Fix issue #184 - The position of typing dialog should be under the focused line.
-- Fix issue #187 - Task List - Compatible with PHP 7.4
-
-= 1.15.2
-
-- Fix errors in WP CLI.
-
-= 1.16.0
-
-- Fix issue #209 - HTML unescaped in code blocks.
-- Fix issue #210 - Inline MathJax is not displayed.
-- Upgrade Mermaid JavaScript library from 8.0.0 to 8.9.0
-- Upgrade KaTax JavaScript library from 0.11.1 to 0.12.0
-- Upgrade Flowchart.js JavaScript library from 1.11.3 to 1.14.1
-
-= 1.16.1
-
-- Fix issue #253 - KaTax... by xxNull-lsk
-- Fix issue #252 - Bulk action... by hmaragy
-- Improve #252 Update composer.json to allow bedrock installs by jawngee
-- Fix issue #230 - jsdeliver url by Bronya0
-- Test up to WordPress 5.8.1
-- Test up to PHP 8.0
 
 == Upgrade Notice ==
 
